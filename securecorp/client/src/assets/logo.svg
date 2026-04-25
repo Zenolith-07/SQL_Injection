@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" fill="none">
+  <!-- Shield body -->
+  <path d="M60 8L12 32V68C12 98 32 124 60 134C88 124 108 98 108 68V32L60 8Z" fill="url(#shield-gradient)" stroke="url(#border-gradient)" stroke-width="2.5"/>
+  <!-- Inner shield highlight -->
+  <path d="M60 20L22 40V68C22 92 38 114 60 122C82 114 98 92 98 68V40L60 20Z" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.2)" stroke-width="1"/>
+  <!-- Lock icon -->
+  <rect x="44" y="62" width="32" height="26" rx="4" fill="url(#lock-gradient)" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+  <path d="M50 62V52C50 46.5 54.5 42 60 42C65.5 42 70 46.5 70 52V62" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <!-- Keyhole -->
+  <circle cx="60" cy="73" r="3.5" fill="#1d4ed8"/>
+  <rect x="58.5" y="75" width="3" height="6" rx="1.5" fill="#1d4ed8"/>
+  <!-- Decorative lines -->
+  <path d="M36 46L60 34L84 46" stroke="rgba(59,130,246,0.3)" stroke-width="1" fill="none"/>
+  <path d="M30 52L60 38L90 52" stroke="rgba(59,130,246,0.15)" stroke-width="0.5" fill="none"/>
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="shield-gradient" x1="60" y1="8" x2="60" y2="134" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="border-gradient" x1="60" y1="8" x2="60" y2="134" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="0.5" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="lock-gradient" x1="44" y1="62" x2="76" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+</svg>
