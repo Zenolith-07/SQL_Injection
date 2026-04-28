@@ -23,6 +23,69 @@ router.get('/', async (req, res) => {
 });
 
 /**
+ * GET /api/employees/:id
+ * Fetches data for a single employee.
+ */
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  if (req.session.user.role !== 'admin' && req.session.user.id !== parseInt(id, 10)) {
+    return res.status(403).json({ error: 'Unauthorized.' });
+  }
+
+  try {
+    const result = await pool.query(
+      'SELECT id, name, email, phone, role, salary, department, joined_date FROM users WHERE id = $1',
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Employee not found.' });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Fetch employee error:', err.message);
+    res.status(500).json({ error: 'Failed to fetch employee.' });
+  }
+});
+
+/**
+ * PUT /api/employees/:id
+ * Updates an employee's basic profile.
+ */
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, email, phone, department, salary } = req.body;
+
+  if (req.session.user.role !== 'admin' && req.session.user.id !== parseInt(id, 10)) {
+    return res.status(403).json({ error: 'Unauthorized.' });
+  }
+
+  try {
+    const result = await pool.query(
+      `UPDATE users SET 
+        name = COALESCE($1, name),
+        email = COALESCE($2, email),
+        phone = COALESCE($3, phone),
+        department = COALESCE($4, department),
+        salary = COALESCE($5, salary)
+       WHERE id = $6 RETURNING id, name, email, phone, role, salary, department, joined_date`,
+      [name, email, phone, department, salary, id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Employee not found.' });
+    }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('Update employee error:', err.message);
+    res.status(500).json({ error: 'Failed to update employee profile.' });
+  }
+});
+
+/**
  * PATCH /api/employees/:id/role
  * Updates the role of an employee.
  */
