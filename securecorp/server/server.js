@@ -9,6 +9,11 @@ require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const employeeRoutes = require('./routes/employees');
 const userRoutes = require('./routes/user');
+const requestsRoutes = require('./routes/requests');
+const notificationsRoutes = require('./routes/notifications');
+const settingsRoutes = require('./routes/settings');
+const securityRoutes = require('./routes/security');
+const analyticsRoutes = require('./routes/analytics');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -44,6 +49,11 @@ app.use(session({
 app.use('/api/auth', authRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/requests', requestsRoutes);
+app.use('/api/notifications', notificationsRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/security', securityRoutes);
+app.use('/api/analytics', analyticsRoutes);
 
 // ─── Health Check ───
 app.get('/api/health', (req, res) => {
